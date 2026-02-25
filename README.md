@@ -50,6 +50,8 @@ The Git history records _how_ the text has evolved; the bylaws themselves define
 Proposed amendments to the bylaws are introduced through documented changes to `BYLAWS.md`,
 reviewed according to the Foundation's governance procedures, and merged only after proper approval.
 
+The full amendment workflow — including branch naming, versioning, and approval procedures — is defined in [`GOVERNANCE.md`](./GOVERNANCE.md).
+
 Where applicable, significant changes may be summarized in a `CHANGELOG.md` for ease of reference.
 
 ---

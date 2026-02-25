@@ -1,0 +1,66 @@
+name: Bylaws Approval Check
+
+on:
+  pull_request:
+    branches: [main]
+  pull_request_review:
+    types: [submitted]
+
+jobs:
+  check-bylaws-approval:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: read
+    steps:
+      - name: Check if BYLAWS.md is modified
+        id: changed
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const files = await github.paginate(
+              github.rest.pulls.listFiles,
+              {
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                pull_number: context.issue.number,
+              }
+            );
+            const bylawsChanged = files.some(f => f.filename === 'BYLAWS.md');
+            core.setOutput('bylaws', bylawsChanged.toString());
+
+      - name: Require 3 approvals for BYLAWS.md changes
+        if: steps.changed.outputs.bylaws == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const reviews = await github.paginate(
+              github.rest.pulls.listReviews,
+              {
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                pull_number: context.issue.number,
+              }
+            );
+
+            // Count unique approvals (only the latest review per user)
+            const latestByUser = new Map();
+            for (const review of reviews) {
+              if (review.user.login === 'github-actions[bot]') continue;
+              latestByUser.set(review.user.login, review.state);
+            }
+
+            const approvals = [...latestByUser.values()].filter(
+              state => state === 'APPROVED'
+            ).length;
+
+            if (approvals < 3) {
+              core.setFailed(
+                `BYLAWS.md changes require at least 3 approvals (currently ${approvals}).`
+              );
+            } else {
+              core.info(`BYLAWS.md change approved with ${approvals} approval(s).`);
+            }
+
+      - name: Skip — BYLAWS.md not modified
+        if: steps.changed.outputs.bylaws == 'false'
+        run: echo "BYLAWS.md not modified — no additional approvals required."
