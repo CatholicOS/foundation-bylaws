@@ -42,6 +42,7 @@ Example:
 `amendment/2026-01-board-composition`
 
 Only the following files may be modified in an amendment proposal:
+
 - `BYLAWS.md`
 - `CHANGELOG.md` (if present)
 
@@ -52,6 +53,7 @@ Each commit must clearly identify the amendment.
 ### 2. Pull Request
 
 Every amendment requires a Pull Request with:
+
 - A clear amendment title
 - A concise description of the change
 - The rationale for the amendment
@@ -67,6 +69,7 @@ Approval occurs outside Git according to the procedures defined in the bylaws
 (e.g. Board resolution, members’ vote).
 
 Upon approval:
+
 - The Pull Request is merged into `main`
 - The merge commit records:
   - Approval reference (resolution number or date)
@@ -79,6 +82,7 @@ No rebasing, squashing, or history rewriting is permitted.
 ### 4. Effectivity
 
 Once merged:
+
 - The `main` branch reflects the legally effective bylaws
 - Previous versions remain permanently accessible via Git history and tags
 
@@ -92,7 +96,6 @@ The bylaws follow a legal semantic versioning scheme:
 
 `MAJOR.MINOR`
 
-
 There is no PATCH level.
 
 ---
@@ -100,6 +103,7 @@ There is no PATCH level.
 ### MAJOR version
 
 The MAJOR version is incremented only when the bylaws are:
+
 - Fully replaced
 - Consolidated after extensive amendments
 - Substantially re-founded due to legal or jurisdictional change
@@ -120,6 +124,7 @@ Each amendment corresponds to exactly one MINOR increment.
 ### Version declaration
 
 The current version is declared at the top of `BYLAWS.md`, together with:
+
 - Original adoption date
 - Date of last amendment
 

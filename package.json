@@ -1,0 +1,23 @@
+{
+  "name": "foundation-bylaws",
+  "private": true,
+  "description": "Official bylaws of the Catholic Digital Commons Foundation",
+  "scripts": {
+    "lint:md": "markdownlint-cli2 \"**/*.md\" \"#**/node_modules\" \"#.yarn\"",
+    "lint:md:fix": "markdownlint-cli2 --fix \"**/*.md\" \"#**/node_modules\" \"#.yarn\"",
+    "format:md": "prettier --write \"**/*.md\" \"!**/node_modules/**\"",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.md": [
+      "prettier --write",
+      "markdownlint-cli2"
+    ]
+  },
+  "devDependencies": {
+    "husky": "^9.1.7",
+    "lint-staged": "^15.5.1",
+    "markdownlint-cli2": "^0.17.2",
+    "prettier": "^3.5.3"
+  }
+}

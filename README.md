@@ -38,15 +38,17 @@ As a foundation committed to open, shared digital infrastructure for the Church,
 
 ## Authority of the text
 
-The content of [`BYLAWS.md`](./BYLAWS.md) constitutes the **official bylaws** of the Catholic Digital Commons Foundation, subject to adoption and amendment according to the procedures defined therein.
+The content of [`BYLAWS.md`](./BYLAWS.md) constitutes the **official bylaws** of the Catholic Digital Commons Foundation,
+subject to adoption and amendment according to the procedures defined therein.
 
-The Git history records *how* the text has evolved; the bylaws themselves define *when* changes take legal and organizational effect.
+The Git history records _how_ the text has evolved; the bylaws themselves define _when_ changes take legal and organizational effect.
 
 ---
 
 ## Amendments and governance
 
-Proposed amendments to the bylaws are introduced through documented changes to `BYLAWS.md`, reviewed according to the Foundation’s governance procedures, and merged only after proper approval.
+Proposed amendments to the bylaws are introduced through documented changes to `BYLAWS.md`,
+reviewed according to the Foundation's governance procedures, and merged only after proper approval.
 
 Where applicable, significant changes may be summarized in a `CHANGELOG.md` for ease of reference.
 

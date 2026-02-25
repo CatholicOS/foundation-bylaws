@@ -9,7 +9,7 @@
 
 - **Amendment ID:** YYYY-NN
 - **Proposed version increment:** vX.(Y+1)
-- **Short title:** 
+- **Short title:**
 
 ---
 
