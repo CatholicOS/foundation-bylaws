@@ -1,6 +1,8 @@
 # **Bylaws of the Catholic Digital Commons Foundation**
 
-**Adopted on \[Date\]**
+**Version:** 1.0  
+**Original Adoption Date:** 2026-02-25  
+**Last Amended:** 2026-02-25
 
 ---
 
