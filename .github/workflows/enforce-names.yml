@@ -1,4 +1,4 @@
-name: Enforce branch, tag, and BYLAWS version
+name: BYLAWS Governance Enforcement
 
 on:
   push:
