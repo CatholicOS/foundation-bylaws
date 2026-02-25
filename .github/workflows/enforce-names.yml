@@ -17,15 +17,20 @@ jobs:
       - name: Enforce branch naming
         if: startsWith(github.ref, 'refs/heads/')
         run: |
-          BRANCH_NAME=${GITHUB_REF#refs/heads/}
-          echo "Checking branch name: $BRANCH_NAME"
-          if [[ "$BRANCH_NAME" == "main" ]]; then
-            echo "Main branch OK"
-          elif [[ "$BRANCH_NAME" =~ ^amendment/[0-9]{4}-[0-9]{2}-[a-z0-9\-]+$ ]]; then
-            echo "Amendment branch name OK"
+          # Detect if BYLAWS.md was modified in this PR / push
+          if git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep -q "^BYLAWS.md"; then
+            BRANCH_NAME=${GITHUB_REF#refs/heads/}
+            echo "Checking branch name: $BRANCH_NAME"
+            if [[ "$BRANCH_NAME" == "main" ]]; then
+              echo "Main branch OK"
+            elif [[ "$BRANCH_NAME" =~ ^amendment/[0-9]{4}-[0-9]{2}-[a-z0-9\-]+$ ]]; then
+              echo "Amendment branch name OK"
+            else
+              echo "❌ Invalid branch name. Must be 'main' or 'amendment/YYYY-NN-short-title'"
+              exit 1
+            fi
           else
-            echo "❌ Invalid branch name. Must be 'main' or 'amendment/YYYY-NN-short-title'"
-            exit 1
+            echo "BYLAWS.md not modified → skipping branch name enforcement"
           fi
 
       - name: Enforce tag naming
