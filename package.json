@@ -8,6 +8,7 @@
     "format:md": "prettier --write \"**/*.md\" \"!**/node_modules/**\"",
     "build:html": "mkdir -p dist && pandoc BYLAWS.md -f markdown -t html5 -o dist/bylaws.html",
     "tag": "bash scripts/tag.sh",
+    "merge": "bash scripts/merge.sh",
     "prepare": "husky"
   },
   "lint-staged": {

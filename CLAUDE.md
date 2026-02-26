@@ -45,10 +45,28 @@ Install it before running the script — for example `sudo apt install pandoc` o
 
 ## Tagging Releases
 
-- `npm run tag -- vMAJOR.MINOR` — update the `Last Amended` date in `BYLAWS.md` to today, commit, and create an annotated git tag.
+- `npm run tag -- vMAJOR.MINOR` — validate that the `Last Amended` date in `BYLAWS.md` matches HEAD's commit date, then create an annotated git tag.
 - `npm run tag -- v1.0-draft-N` — same as above, but for pre-ratification draft tags (only valid before `v1.0` is officially tagged).
 
-This ensures the `Last Amended` date always matches the tagged commit's date, which CI validates.
+The script does **not** modify files or create commits.
+The `Last Amended` date must be updated as part of the amendment PR (or a dedicated PR) before tagging.
+This ensures compatibility with branch protection rules on `main`.
+
+## Merging Amendment PRs
+
+- `npm run merge -- <PR_NUMBER> [TAG]` — automates the full merge-and-tag workflow for amendment PRs.
+
+The script performs the following steps:
+
+1. Validates inputs (PR number required; tag optional but must follow `vMAJOR.MINOR` or `v1.0-draft-N` format)
+2. Fetches PR metadata via `gh pr view` — checks the PR is open and mergeable
+3. Checks out the PR branch and updates `BYLAWS.md`: sets `Last Amended` to today and, if a tag is provided, sets `Version` to match the tag (skips if already current)
+4. Waits for CI checks to pass (`gh pr checks --watch`)
+5. Merges the PR with a merge commit (`--merge`, no squash/rebase per governance rules)
+6. Updates local `main` and deletes the amendment branch (local and remote)
+7. If a tag was provided: validates the `Last Amended` date matches the merge commit date, creates an annotated tag, and pushes it
+
+Requires the [GitHub CLI (`gh`)](https://cli.github.com/) to be installed and authenticated.
 
 ## Pre-commit Hook
 
