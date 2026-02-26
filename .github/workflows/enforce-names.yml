@@ -46,8 +46,8 @@ jobs:
           TAG_NAME=${GITHUB_REF#refs/tags/}
           echo "Tag: $TAG_NAME"
 
-          if [[ ! "$TAG_NAME" =~ ^v[0-9]+\.[0-9]+$ ]]; then
-            echo "❌ Invalid tag name. Must follow vMAJOR.MINOR (e.g., v1.0)"
+          if [[ ! "$TAG_NAME" =~ ^v[0-9]+\.[0-9]+$ ]] && [[ ! "$TAG_NAME" =~ ^v1\.0-draft-[0-9]+$ ]]; then
+            echo "❌ Invalid tag name. Must follow vMAJOR.MINOR (e.g., v1.0) or v1.0-draft-N before ratification"
             exit 1
           fi
 
@@ -59,9 +59,12 @@ jobs:
           fi
           echo "BYLAWS.md version: $BYLAWS_VERSION"
 
+          # Strip -draft-N suffix for version comparison
+          BASE_TAG=$(echo "$TAG_NAME" | sed 's/-draft-[0-9]*//')
+
           # Compare with tag
           EXPECTED_TAG="v$BYLAWS_VERSION"
-          if [[ "$TAG_NAME" != "$EXPECTED_TAG" ]]; then
+          if [[ "$BASE_TAG" != "$EXPECTED_TAG" ]]; then
             echo "❌ Tag $TAG_NAME does not match BYLAWS.md version $BYLAWS_VERSION"
             exit 1
           else

@@ -46,6 +46,7 @@ Install it before running the script — for example `sudo apt install pandoc` o
 ## Tagging Releases
 
 - `npm run tag -- vMAJOR.MINOR` — update the `Last Amended` date in `BYLAWS.md` to today, commit, and create an annotated git tag.
+- `npm run tag -- v1.0-draft-N` — same as above, but for pre-ratification draft tags (only valid before `v1.0` is officially tagged).
 
 This ensures the `Last Amended` date always matches the tagged commit's date, which CI validates.
 
@@ -60,7 +61,7 @@ Configuration: `.markdownlint.yml` (max line length 180, code blocks and tables 
 The `enforce-names.yml` workflow runs on all pushes and PRs to `main`. It checks:
 
 - Branch names match `amendment/YYYY-NN-short-title` pattern when `BYLAWS.md` is modified
-- Tags match `vMAJOR.MINOR` format
+- Tags match `vMAJOR.MINOR` format (or `v1.0-draft-N` before ratification)
 - Tag names align with the version declared in `BYLAWS.md`
 - `Last Amended` date in `BYLAWS.md` matches the tagged commit's date
 
