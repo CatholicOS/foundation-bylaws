@@ -4,13 +4,14 @@ set -euo pipefail
 TAG="${1:-}"
 
 if [[ -z "$TAG" ]]; then
-  echo "Usage: npm run tag -- vMAJOR.MINOR"
-  echo "Example: npm run tag -- v1.1"
+  echo "Usage: npm run tag -- vMAJOR.MINOR or npm run tag -- v1.0-draft-N"
+  echo "Examples: npm run tag -- v1.1"
+  echo "          npm run tag -- v1.0-draft-1"
   exit 1
 fi
 
-if [[ ! "$TAG" =~ ^v[0-9]+\.[0-9]+$ ]]; then
-  echo "Error: Tag must follow vMAJOR.MINOR format (e.g. v1.0)"
+if [[ ! "$TAG" =~ ^v[0-9]+\.[0-9]+(-draft-[0-9]+)?$ ]]; then
+  echo "Error: Tag must follow vMAJOR.MINOR (e.g. v1.0) or v1.0-draft-N format"
   exit 1
 fi
 

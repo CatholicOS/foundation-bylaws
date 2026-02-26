@@ -132,6 +132,17 @@ Git tags (e.g. `v1.3`) may be used to mark each approved version.
 
 ---
 
+### Pre-ratification draft tags
+
+Before the bylaws are officially ratified as `v1.0`, draft tags following the
+pattern `v1.0-draft-N` (e.g. `v1.0-draft-1`, `v1.0-draft-2`) may be used to
+mark successive working drafts.
+
+Once `v1.0` is tagged, draft tags are no longer permitted and only the strict
+`vMAJOR.MINOR` format is valid.
+
+---
+
 ## Changelog
 
 Where maintained, `CHANGELOG.md` provides a human-readable summary of amendments.
