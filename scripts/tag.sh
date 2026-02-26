@@ -22,19 +22,24 @@ if [[ ! -f "$BYLAWS_FILE" ]]; then
   exit 1
 fi
 
-TODAY=$(date +%Y-%m-%d)
+# Validate that the Last Amended date matches HEAD's commit date
+LAST_AMENDED=$(grep -i "^\*\*Last Amended:\*\*" "$BYLAWS_FILE" | head -n1 | sed 's/.*\*\* //')
+COMMIT_DATE=$(git log -1 --format=%cd --date=short HEAD)
 
-# Update the Last Amended date in BYLAWS.md
-sed -i "s/^\*\*Last Amended:\*\* .*/\*\*Last Amended:\*\* $TODAY/" "$BYLAWS_FILE"
-
-echo "Updated Last Amended date to $TODAY"
-
-git add "$BYLAWS_FILE"
-if git diff --cached --quiet; then
-  echo "Last Amended date already set to $TODAY — tagging current commit"
-else
-  git commit -m "Update Last Amended date for $TAG"
+if [[ -z "$LAST_AMENDED" ]]; then
+  echo "Error: No Last Amended date found in $BYLAWS_FILE"
+  exit 1
 fi
-git tag "$TAG"
 
-echo "Created tag $TAG with Last Amended date $TODAY"
+if [[ "$LAST_AMENDED" != "$COMMIT_DATE" ]]; then
+  echo "Error: Last Amended date ($LAST_AMENDED) does not match HEAD commit date ($COMMIT_DATE)"
+  echo ""
+  echo "Update the Last Amended date in $BYLAWS_FILE to $COMMIT_DATE via a PR, then re-run this command."
+  exit 1
+fi
+
+echo "✅ Last Amended date ($LAST_AMENDED) matches HEAD commit date"
+
+git tag -a "$TAG" -m "$TAG"
+
+echo "Created tag $TAG on $(git rev-parse --short HEAD)"
