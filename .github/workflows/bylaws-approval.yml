@@ -28,7 +28,7 @@ jobs:
             const bylawsChanged = files.some(f => f.filename === 'BYLAWS.md');
             core.setOutput('bylaws', bylawsChanged.toString());
 
-      - name: Require 3 approvals for BYLAWS.md changes
+      - name: Require 2 approvals for BYLAWS.md changes
         if: steps.changed.outputs.bylaws == 'true'
         uses: actions/github-script@v7
         with:
@@ -53,9 +53,9 @@ jobs:
               state => state === 'APPROVED'
             ).length;
 
-            if (approvals < 3) {
+            if (approvals < 2) {
               core.setFailed(
-                `BYLAWS.md changes require at least 3 approvals (currently ${approvals}).`
+                `BYLAWS.md changes require at least 2 approvals (currently ${approvals}).`
               );
             } else {
               core.info(`BYLAWS.md change approved with ${approvals} approval(s).`);
