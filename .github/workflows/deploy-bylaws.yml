@@ -1,0 +1,70 @@
+name: Deploy Bylaws to WordPress
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    name: Convert & publish bylaws
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install pandoc
+        uses: pandoc/actions/setup@v1
+
+      - name: Convert Markdown to HTML fragment
+        run: pandoc BYLAWS.md -f markdown -t html5 -o bylaws.html
+
+      - name: Extract version from BYLAWS.md
+        id: version
+        run: |
+          version=$(grep -m1 '^Version:' BYLAWS.md | sed 's/Version:[[:space:]]*//')
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+
+      - name: Deploy to WordPress
+        env:
+          WP_REST_URL: ${{ secrets.WP_REST_URL }}
+          WP_APP_USERNAME: ${{ secrets.WP_APP_USERNAME }}
+          WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+        run: |
+          HTML_CONTENT=$(cat bylaws.html)
+
+          # Check if a page with slug "bylaws" already exists
+          EXISTING=$(curl -s \
+            -u "$WP_APP_USERNAME:$WP_APP_PASSWORD" \
+            "$WP_REST_URL/wp/v2/pages?slug=bylaws&status=publish,draft")
+
+          PAGE_ID=$(echo "$EXISTING" | jq -r '.[0].id // empty')
+
+          PAYLOAD=$(jq -n \
+            --arg title "Bylaws" \
+            --arg slug "bylaws" \
+            --arg content "$HTML_CONTENT" \
+            '{title: $title, slug: $slug, content: $content, status: "publish"}')
+
+          if [ -n "$PAGE_ID" ] && [ "$PAGE_ID" != "null" ]; then
+            echo "Updating existing page (ID: $PAGE_ID)..."
+            curl -s -f -X POST \
+              -u "$WP_APP_USERNAME:$WP_APP_PASSWORD" \
+              -H "Content-Type: application/json" \
+              -d "$PAYLOAD" \
+              "$WP_REST_URL/wp/v2/pages/$PAGE_ID"
+          else
+            echo "Creating new page..."
+            curl -s -f -X POST \
+              -u "$WP_APP_USERNAME:$WP_APP_PASSWORD" \
+              -H "Content-Type: application/json" \
+              -d "$PAYLOAD" \
+              "$WP_REST_URL/wp/v2/pages"
+          fi
+
+          echo ""
+          echo "Deployed bylaws v${{ steps.version.outputs.version }} to WordPress."
