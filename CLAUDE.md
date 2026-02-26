@@ -35,6 +35,14 @@ Run after `npm install`:
 - `npm run lint:md:fix` — auto-fix lint issues
 - `npm run format:md` — format all Markdown files with Prettier
 
+## Building HTML
+
+- `npm run build:html` — convert `BYLAWS.md` to `dist/bylaws.html` using Pandoc
+
+This script requires [Pandoc](https://pandoc.org/) as a **system dependency** (it is not installed via npm).
+Install it before running the script — for example `sudo apt install pandoc` on Debian/Ubuntu,
+`brew install pandoc` on macOS, or see the [Pandoc installation docs](https://pandoc.org/installing.html).
+
 A husky pre-commit hook runs `lint-staged`, which applies Prettier and then markdownlint-cli2 to staged `.md` files.
 
 Configuration: `.markdownlint.yml` (max line length 180, code blocks and tables exempt).

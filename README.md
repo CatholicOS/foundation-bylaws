@@ -56,6 +56,26 @@ Where applicable, significant changes may be summarized in a `CHANGELOG.md` for 
 
 ---
 
+## Local development
+
+After cloning the repository, install the Node dev-dependencies:
+
+```sh
+npm install
+```
+
+To build an HTML version of the bylaws locally:
+
+```sh
+npm run build:html
+```
+
+This requires [Pandoc](https://pandoc.org/) as a **system dependency** (not installed via npm).
+Install it first — for example `sudo apt install pandoc` on Debian/Ubuntu,
+`brew install pandoc` on macOS, or see the [Pandoc installation docs](https://pandoc.org/installing.html).
+
+---
+
 ## License and reuse
 
 This repository contains governance documents of the Catholic Digital Commons Foundation.  
