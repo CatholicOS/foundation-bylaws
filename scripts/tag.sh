@@ -10,7 +10,7 @@ if [[ -z "$TAG" ]]; then
   exit 1
 fi
 
-if [[ ! "$TAG" =~ ^v[0-9]+\.[0-9]+(-draft-[0-9]+)?$ ]]; then
+if [[ ! "$TAG" =~ ^v[0-9]+\.[0-9]+$ ]] && [[ ! "$TAG" =~ ^v1\.0-draft-[0-9]+$ ]]; then
   echo "Error: Tag must follow vMAJOR.MINOR (e.g. v1.0) or v1.0-draft-N format"
   exit 1
 fi
