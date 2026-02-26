@@ -194,7 +194,7 @@ The Board shall ensure financial statements are **audited annually** by a qualif
 
 ## **Article VIII – Conflict of Interest**
 
-Directors, officers, and committee members must **disclose conflicts** and abstain from votes where a conflict exists.
+Directors and committee members must **disclose conflicts** and abstain from votes where a conflict exists.
 
 ---
 
