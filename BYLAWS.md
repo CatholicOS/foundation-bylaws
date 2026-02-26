@@ -2,7 +2,7 @@
 
 **Version:** 1.0  
 **Original Adoption Date:** 2026-02-25  
-**Last Amended:** 2026-02-26
+**Last Amended:** 2026-02-25
 
 ---
 
