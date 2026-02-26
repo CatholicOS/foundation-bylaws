@@ -30,7 +30,11 @@ sed -i "s/^\*\*Last Amended:\*\* .*/\*\*Last Amended:\*\* $TODAY/" "$BYLAWS_FILE
 echo "Updated Last Amended date to $TODAY"
 
 git add "$BYLAWS_FILE"
-git commit -m "Update Last Amended date for $TAG"
+if git diff --cached --quiet; then
+  echo "Last Amended date already set to $TODAY — tagging current commit"
+else
+  git commit -m "Update Last Amended date for $TAG"
+fi
 git tag "$TAG"
 
 echo "Created tag $TAG with Last Amended date $TODAY"
