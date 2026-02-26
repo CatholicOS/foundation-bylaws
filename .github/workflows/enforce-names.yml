@@ -59,12 +59,9 @@ jobs:
           fi
           echo "BYLAWS.md version: $BYLAWS_VERSION"
 
-          # Strip -draft-N suffix for version comparison
-          BASE_TAG=$(echo "$TAG_NAME" | sed 's/-draft-[0-9]*//')
-
-          # Compare with tag
+          # Compare tag with BYLAWS.md version
           EXPECTED_TAG="v$BYLAWS_VERSION"
-          if [[ "$BASE_TAG" != "$EXPECTED_TAG" ]]; then
+          if [[ "$TAG_NAME" != "$EXPECTED_TAG" ]]; then
             echo "❌ Tag $TAG_NAME does not match BYLAWS.md version $BYLAWS_VERSION"
             exit 1
           else
