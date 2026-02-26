@@ -67,3 +67,22 @@ jobs:
           else
             echo "✅ Tag matches BYLAWS.md version"
           fi
+
+          # Validate Last Amended date matches the tagged commit's date
+          LAST_AMENDED=$(grep -i "^\*\*Last Amended:\*\*" BYLAWS.md | head -n1 | sed 's/.*\*\* //')
+          if [[ -z "$LAST_AMENDED" ]]; then
+            echo "❌ No Last Amended date found in BYLAWS.md"
+            exit 1
+          fi
+          echo "Last Amended date: $LAST_AMENDED"
+
+          COMMIT_DATE=$(git log -1 --format=%cd --date=short "$GITHUB_SHA")
+          echo "Tagged commit date: $COMMIT_DATE"
+
+          if [[ "$LAST_AMENDED" != "$COMMIT_DATE" ]]; then
+            echo "❌ Last Amended date ($LAST_AMENDED) does not match tagged commit date ($COMMIT_DATE)"
+            echo "   Use 'npm run tag -- $TAG_NAME' to update the date and create the tag."
+            exit 1
+          else
+            echo "✅ Last Amended date matches tagged commit date"
+          fi

@@ -43,6 +43,14 @@ This script requires [Pandoc](https://pandoc.org/) as a **system dependency** (i
 Install it before running the script — for example `sudo apt install pandoc` on Debian/Ubuntu,
 `brew install pandoc` on macOS, or see the [Pandoc installation docs](https://pandoc.org/installing.html).
 
+## Tagging Releases
+
+- `npm run tag -- vMAJOR.MINOR` — update the `Last Amended` date in `BYLAWS.md` to today, commit, and create an annotated git tag.
+
+This ensures the `Last Amended` date always matches the tagged commit's date, which CI validates.
+
+## Pre-commit Hook
+
 A husky pre-commit hook runs `lint-staged`, which applies Prettier and then markdownlint-cli2 to staged `.md` files.
 
 Configuration: `.markdownlint.yml` (max line length 180, code blocks and tables exempt).
@@ -54,6 +62,7 @@ The `enforce-names.yml` workflow runs on all pushes and PRs to `main`. It checks
 - Branch names match `amendment/YYYY-NN-short-title` pattern when `BYLAWS.md` is modified
 - Tags match `vMAJOR.MINOR` format
 - Tag names align with the version declared in `BYLAWS.md`
+- `Last Amended` date in `BYLAWS.md` matches the tagged commit's date
 
 ## Important Constraints
 
