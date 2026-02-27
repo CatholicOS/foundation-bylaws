@@ -7,8 +7,11 @@
     "lint:md:fix": "markdownlint-cli2 --fix \"**/*.md\" \"#**/node_modules\" \"#.yarn\"",
     "format:md": "prettier --write \"**/*.md\" \"!**/node_modules/**\"",
     "build:html": "mkdir -p dist && pandoc BYLAWS.md -f markdown -t html5 -o dist/bylaws.html",
+    "build:html:standalone": "mkdir -p dist && pandoc BYLAWS.md --standalone --embed-resources --css scripts/bylaws-print.css -f markdown -t html5 -o dist/bylaws-standalone.html",
+    "build:pdf": "pagedjs-cli --browserArgs='--no-sandbox' dist/bylaws-standalone.html -o dist/bylaws.pdf",
     "tag": "bash scripts/tag.sh",
     "merge": "bash scripts/merge.sh",
+    "translate": "node scripts/translate.js",
     "prepare": "husky"
   },
   "lint-staged": {
@@ -21,6 +24,7 @@
     "husky": "^9.1.7",
     "lint-staged": "^15.5.1",
     "markdownlint-cli2": "^0.17.2",
+    "pagedjs-cli": "^0.4.3",
     "prettier": "^3.5.3"
   }
 }

@@ -6,7 +6,7 @@ on:
     types: [completed]
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   deploy:
@@ -73,3 +73,27 @@ jobs:
 
           echo ""
           echo "Deployed bylaws v${{ steps.version.outputs.version }} to WordPress."
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Install npm dependencies
+        run: npm ci
+
+      - name: Build standalone HTML and PDF
+        run: |
+          npm run build:html:standalone
+          npm run build:pdf
+
+      - name: Create GitHub release with PDF and standalone HTML
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          VERSION="v${{ steps.version.outputs.version }}"
+          gh release create "$VERSION" \
+            --title "Bylaws $VERSION" \
+            --notes "Official bylaws of the Catholic Digital Commons Foundation, $VERSION." \
+            dist/bylaws-standalone.html \
+            dist/bylaws.pdf
