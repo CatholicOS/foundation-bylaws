@@ -48,7 +48,7 @@ Its purposes include, without limitation:
 
 ## **Article II – Offices**
 
-**Section 1 – Principal Office** The principal office of the Foundation shall be located in Dallas, Texas.
+**Section 1 – Principal Office** The principal office of the Foundation shall be located in Carrollton, Texas.
 
 **Section 2 – Other Offices** The Foundation may have other offices in Texas or elsewhere, as determined by the Board of Directors.
 
@@ -89,57 +89,48 @@ In addition to statutory duties, the Board shall:
 - Ensure that collaborations with universities, associations, and ecclesial bodies respect their autonomy and authority
 - Oversee initiatives such as international forums in a manner consistent with Catholic teaching and civil law
 
-### **Section 4 – Election and Removal**
+### **Section 4 – Election, Term, and Removal**
 
-1. Directors shall be elected by a majority vote of the current Board.
+1. Directors shall be elected by a majority vote of the current Board for **one-year terms**.
 2. Directors may be removed by a **two-thirds vote** of the Board for failure to fulfill duties or conduct inconsistent with the mission.
 
-### **Section 5 – Powers**
+### **Section 5 – Roles**
+
+1. The Board shall elect from among its Directors a **President**, **Secretary**, and **Treasurer**, with optional **Vice-President** and other roles as determined by the Board.
+2. One person may hold multiple roles, except that the same person may not simultaneously serve as President and Secretary.
+3. Duties of each role:
+   - **President:** Presides at meetings and represents the Foundation.
+   - **Vice-President:** Assumes President's duties when necessary.
+   - **Secretary:** Maintains records, minutes, and official correspondence.
+   - **Treasurer:** Oversees finances and presents reports to the Board.
+
+### **Section 6 – Powers**
 
 The Board shall have authority to:
 
 - Approve budgets, strategic plans, and major projects.
-- Appoint officers and committees.
+- Appoint committees.
 - Establish policies consistent with these Bylaws and Texas law.
 - Ensure compliance with civil and ecclesiastical requirements.
 
-### **Section 6 – Meetings**
+### **Section 7 – Meetings**
 
 1. The Board shall hold at least **two regular meetings per year**.
 2. Special meetings may be called by the Chair or a majority of the Board.
 3. Meetings may be held **in person or via electronic communications** (video conference, teleconference) if authorized in the bylaws.
 4. Notice of meetings shall be given at least **10 days in advance**.
 
-### **Section 7 – Quorum and Voting**
+### **Section 8 – Quorum and Voting**
 
 A **majority of directors then in office** constitutes a quorum. Action requires a majority vote of those present.
 
-### **Section 8 – Action Without Meeting**
+### **Section 9 – Action Without Meeting**
 
 Directors may take action without a meeting by **written consent signed by all directors** or by electronic communication, consistent with Texas law.
 
 ---
 
-## **Article V – Officers**
-
-### **Section 1 – Officers**
-
-The officers shall include a **President, Secretary, and Treasurer**, with optional Vice-President and other officers as determined by the Board.
-
-### **Section 2 – Election and Term**
-
-Officers shall be elected by the Board for **one-year terms** and may hold multiple offices, except that one person may not simultaneously serve as President and Secretary.
-
-### **Section 3 – Duties**
-
-- **President:** Presides at meetings and represents the Foundation.
-- **Vice-President:** Assumes President’s duties when necessary.
-- **Secretary:** Maintains records, minutes, and official correspondence.
-- **Treasurer:** Oversees finances and presents reports to the Board.
-
----
-
-## **Article VI – Committees**
+## **Article V – Committees**
 
 ### **Section 1 – Standing Committees**
 
@@ -155,7 +146,7 @@ Committees provide recommendations but **may not act on behalf of the Board** un
 
 ---
 
-## **Article VII – Ecclesial Advisory Council**
+## **Article VI – Ecclesial Advisory Council**
 
 ### **Section 1 – Purpose**
 
@@ -185,7 +176,7 @@ Final civil authority remains with the Board; final ecclesial authority remains 
 
 ---
 
-## **Article VIII – Fiscal Matters**
+## **Article VII – Fiscal Matters**
 
 ### **Section 1 – Fiscal Year**
 
@@ -201,27 +192,27 @@ The Board shall ensure financial statements are **audited annually** by a qualif
 
 ---
 
-## **Article IX – Conflict of Interest**
+## **Article VIII – Conflict of Interest**
 
-Directors, officers, and committee members must **disclose conflicts** and abstain from votes where a conflict exists.
+Directors and committee members must **disclose conflicts** and abstain from votes where a conflict exists.
 
 ---
 
-## **Article X – Amendments**
+## **Article IX – Amendments**
 
 The Board may **amend or repeal the Bylaws**, unless the certificate of formation limits this authority.
 Amendments require **two-thirds vote** of directors at a meeting, with at least 10 days written notice.
 
 ---
 
-## **Article XI – Dissolution**
+## **Article X – Dissolution**
 
 Upon dissolution, assets shall be distributed to **ecclesial or charitable organizations aligned with the Catholic Church's mission**,
 consistent with Texas law and canon law. No assets shall inure to any private individual.
 
 ---
 
-## **Article XII – Miscellaneous**
+## **Article XI – Miscellaneous**
 
 1. **Non-Discrimination:** The Foundation shall not discriminate on civil grounds while maintaining fidelity to Catholic teaching.
 2. **Indemnification:** Directors and officers shall be indemnified to the extent allowed by Texas law.
