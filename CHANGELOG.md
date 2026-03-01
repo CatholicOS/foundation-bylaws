@@ -24,6 +24,8 @@ It has no independent legal authority.
 - Renumbered Articles VI–XII to V–XI.
 - Removed "officers" from Article VIII (Conflict of Interest) since officers are now
   Directors with titled roles.
+- **Corrected principal office location** in Article II §1 from Dallas to Carrollton,
+  Texas, to match the Certificate of Formation. (#3)
 
 ### Added
 

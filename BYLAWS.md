@@ -48,7 +48,7 @@ Its purposes include, without limitation:
 
 ## **Article II – Offices**
 
-**Section 1 – Principal Office** The principal office of the Foundation shall be located in Dallas, Texas.
+**Section 1 – Principal Office** The principal office of the Foundation shall be located in Carrollton, Texas.
 
 **Section 2 – Other Offices** The Foundation may have other offices in Texas or elsewhere, as determined by the Board of Directors.
 
