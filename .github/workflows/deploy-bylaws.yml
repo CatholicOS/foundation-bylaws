@@ -26,7 +26,7 @@ jobs:
       - name: Extract version from BYLAWS.md
         id: version
         run: |
-          version=$(grep -m1 '^\*\*Version:\*\*' BYLAWS.md | sed 's/\*\*Version:\*\*[[:space:]]*//')
+          version=$(grep -m1 '^\*\*Version:\*\*' BYLAWS.md | sed 's/\*\*Version:\*\*[[:space:]]*//' | sed 's/[[:space:]]*$//')
           echo "version=$version" >> "$GITHUB_OUTPUT"
 
       - name: Deploy to WordPress
