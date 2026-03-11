@@ -87,6 +87,19 @@ if [[ "$NEEDS_UPDATE" == true ]]; then
   git commit -m "Update Last Amended date for $LABEL"
   git push origin "$PR_BRANCH"
   echo "Pushed updates to $PR_BRANCH"
+
+  # Wait for CI to start new check runs against the new commit before watching
+  NEW_SHA=$(git rev-parse HEAD)
+  echo "Waiting for CI checks to start for commit $NEW_SHA..."
+  for i in $(seq 1 24); do
+    COUNT=$(gh api "repos/{owner}/{repo}/commits/$NEW_SHA/check-runs" --jq '.total_count' 2>/dev/null || echo 0)
+    if [[ "$COUNT" -gt 0 ]]; then
+      echo "CI checks started ($COUNT check run(s) found)"
+      break
+    fi
+    echo "  not started yet, retrying in 5s... ($i/24)"
+    sleep 5
+  done
 else
   echo "Last Amended date and Version already up to date, skipping commit"
 fi

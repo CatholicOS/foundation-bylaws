@@ -1,9 +1,9 @@
 name: Deploy Bylaws to WordPress
 
 on:
-  workflow_run:
-    workflows: ["BYLAWS Governance Enforcement"]
-    types: [completed]
+  push:
+    tags:
+      - 'v*'
 
 permissions:
   contents: write
@@ -12,15 +12,10 @@ jobs:
   deploy:
     name: Convert & publish bylaws
     runs-on: ubuntu-latest
-    if: >-
-      github.event.workflow_run.conclusion == 'success' &&
-      startsWith(github.event.workflow_run.head_branch, 'v')
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.workflow_run.head_sha }}
 
       - name: Install pandoc
         uses: pandoc/actions/setup@v1
