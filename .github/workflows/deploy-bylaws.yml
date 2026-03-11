@@ -31,7 +31,7 @@ jobs:
 
       - name: Deploy to WordPress
         env:
-          WP_REST_URL: ${{ secrets.WP_REST_URL }}
+          WP_REST_URL: ${{ vars.WP_REST_URL }}
           WP_APP_USERNAME: ${{ secrets.WP_APP_USERNAME }}
           WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
         run: |
