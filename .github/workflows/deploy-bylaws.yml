@@ -73,14 +73,19 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '24'
+          cache: 'npm'
 
       - name: Install npm dependencies
         run: npm ci
+        env:
+          PUPPETEER_SKIP_DOWNLOAD: 'true'
 
       - name: Build standalone HTML and PDF
         run: |
           npm run build:html:standalone
           npm run build:pdf
+        env:
+          PUPPETEER_EXECUTABLE_PATH: /usr/bin/google-chrome-stable
 
       - name: Create GitHub release with PDF and standalone HTML
         env:
