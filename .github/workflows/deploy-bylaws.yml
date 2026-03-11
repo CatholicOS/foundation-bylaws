@@ -21,7 +21,7 @@ jobs:
         uses: pandoc/actions/setup@v1
 
       - name: Convert Markdown to HTML fragment
-        run: pandoc BYLAWS.md -f markdown -t html5 -o bylaws.html
+        run: pandoc BYLAWS.md --wrap=none -f markdown -t html5 -o bylaws.html
 
       - name: Extract version from BYLAWS.md
         id: version
@@ -73,14 +73,19 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '24'
+          cache: 'npm'
 
       - name: Install npm dependencies
         run: npm ci
+        env:
+          PUPPETEER_SKIP_DOWNLOAD: 'true'
 
       - name: Build standalone HTML and PDF
         run: |
           npm run build:html:standalone
           npm run build:pdf
+        env:
+          PUPPETEER_EXECUTABLE_PATH: /usr/bin/google-chrome-stable
 
       - name: Create GitHub release with PDF and standalone HTML
         env:

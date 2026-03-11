@@ -6,7 +6,7 @@
     "lint:md": "markdownlint-cli2 \"**/*.md\" \"#**/node_modules\" \"#.yarn\"",
     "lint:md:fix": "markdownlint-cli2 --fix \"**/*.md\" \"#**/node_modules\" \"#.yarn\"",
     "format:md": "prettier --write \"**/*.md\" \"!**/node_modules/**\"",
-    "build:html": "mkdir -p dist && pandoc BYLAWS.md -f markdown -t html5 -o dist/bylaws.html",
+    "build:html": "mkdir -p dist && pandoc BYLAWS.md --wrap=none -f markdown -t html5 -o dist/bylaws.html",
     "build:html:standalone": "mkdir -p dist && pandoc BYLAWS.md --standalone --embed-resources --css scripts/bylaws-print.css -f markdown -t html5 -o dist/bylaws-standalone.html",
     "build:pdf": "pagedjs-cli --browserArgs='--no-sandbox' dist/bylaws-standalone.html -o dist/bylaws.pdf",
     "tag": "bash scripts/tag.sh",
