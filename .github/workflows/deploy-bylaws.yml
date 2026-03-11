@@ -26,21 +26,21 @@ jobs:
       - name: Extract version from BYLAWS.md
         id: version
         run: |
-          version=$(grep -m1 '^Version:' BYLAWS.md | sed 's/Version:[[:space:]]*//')
+          version=$(grep -m1 '^\*\*Version:\*\*' BYLAWS.md | sed 's/\*\*Version:\*\*[[:space:]]*//')
           echo "version=$version" >> "$GITHUB_OUTPUT"
 
       - name: Deploy to WordPress
         env:
-          WP_REST_URL: ${{ secrets.WP_REST_URL }}
+          WP_REST_URL: ${{ vars.WP_REST_URL }}
           WP_APP_USERNAME: ${{ secrets.WP_APP_USERNAME }}
           WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
         run: |
           HTML_CONTENT=$(cat bylaws.html)
 
-          # Check if a page with slug "bylaws" already exists
+          # Check if a published page with slug "bylaws" already exists
           EXISTING=$(curl -s \
             -u "$WP_APP_USERNAME:$WP_APP_PASSWORD" \
-            "$WP_REST_URL/wp/v2/pages?slug=bylaws&status=publish,draft")
+            "$WP_REST_URL/wp/v2/pages?slug=bylaws")
 
           PAGE_ID=$(echo "$EXISTING" | jq -r '.[0].id // empty')
 
