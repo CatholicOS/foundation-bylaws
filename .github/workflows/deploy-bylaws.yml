@@ -15,10 +15,10 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Install pandoc
-        uses: pandoc/actions/setup@v1
+        uses: pandoc/actions/setup@v1.1.1
 
       - name: Convert Markdown to HTML fragment
         run: pandoc BYLAWS.md --wrap=none -f markdown -t html5 -o bylaws.html
@@ -70,7 +70,7 @@ jobs:
           echo "Deployed bylaws v${{ steps.version.outputs.version }} to WordPress."
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: '24'
           cache: 'npm'
